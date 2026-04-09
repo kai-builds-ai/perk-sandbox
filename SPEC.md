@@ -118,7 +118,7 @@ When sandbox returns `Err` at any point after step [7], Solana rolls back ALL ac
 
 ```toml
 [dependencies]
-perk-sandbox = { version = "0.1", features = ["anchor"] }
+perk-sandbox = { version = "1.0.0", features = ["anchor"] }
 
 [features]
 default = ["sandbox"]
