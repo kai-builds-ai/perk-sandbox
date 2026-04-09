@@ -1,9 +1,11 @@
-# PERK Sandbox — Technical Specification v4
+# PERK Sandbox — Technical Specification V1.0
 
 **Version:** 1.0.0
 **Author:** Kai
 **Date:** April 8, 2026
 **Approach:** Build-with (proc macro framework)
+
+> **Implementation Note:** The V1.0 release implements the core framework (proc macros + runtime library + integration tests). References to CLI tools (`doctor`, `verify`, `init-state`), the off-chain watcher, the NPM error package, and retrofit support describe planned features. The on-chain framework (Sections 1-9, 11, 13, 15-16) is complete and production-ready.
 
 ---
 
@@ -1254,7 +1256,7 @@ perk-sandbox/
 
 ---
 
-## 18. Implementation Timeline
+## 18. Implementation Timeline (Historical)
 
 ### Week 0: Spike
 - Prototype `#[sandbox_program]` + Anchor dispatch
@@ -1315,4 +1317,4 @@ perk-sandbox/
 
 ---
 
-*End of specification. Built by Perk. Reviewed by 21 agents across 6 rounds. Ready to build.*
+*End of specification. Built by Perk Protocol. V1.0 core framework shipped April 8, 2026.*
