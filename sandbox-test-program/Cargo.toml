@@ -1,0 +1,13 @@
+[package]
+name = "sandbox-test-program"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Test program for PERK Sandbox Week 0 spike — proves #[sandbox_program] works"
+
+[dependencies]
+perk-sandbox-macros = { path = "../sandbox-macros" }
+perk-sandbox-runtime = { path = "../sandbox-runtime" }
+anchor-lang = "0.30"
+solana-program = "=1.18.26"

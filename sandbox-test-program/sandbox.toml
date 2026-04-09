@@ -1,0 +1,22 @@
+# Minimal sandbox config for testing
+
+[reentrancy]
+mode = "guard"
+
+# ── Account field declarations for snapshot resolution (§4) ──
+
+[accounts.market]
+type = "Market"
+
+[accounts.market.fields]
+vault_balance = { type = "u64", offset = 72 }
+total_long_collateral = { type = "u64", offset = 80 }
+total_short_collateral = { type = "u64", offset = 88 }
+authority = { type = "Pubkey", after = ["Option<Pubkey>"] }
+
+[accounts.position]
+type = "UserPosition"
+
+[accounts.position.fields]
+owner = { type = "Pubkey", offset = 8 }
+collateral = { type = "u64", offset = 40 }

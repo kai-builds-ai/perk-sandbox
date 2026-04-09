@@ -1,0 +1,76 @@
+# PERK Sandbox Configuration — V1.0
+# Full reference: https://github.com/kai-builds-ai/perk-sandbox/blob/main/ARCHITECTURE.md
+
+# ── Reentrancy Guard ──
+# Modes: "reject" (block all self-CPI), "guard" (inner calls skip post-checks),
+#         "full" (everything runs on every call)
+[reentrancy]
+mode = "guard"
+
+# ── Rate Limits ──
+# Window-based counters. Global applies to all callers; per_signer is per-pubkey.
+# [rate_limits.global]
+# window_slots = 1000
+# max_count = 100
+#
+# [rate_limits.per_signer]
+# window_slots = 500
+# max_count = 20
+
+# ── Oracle Pre-Check ──
+# Validates oracle freshness before every instruction.
+# price_offset / slot_offset: byte offsets in the oracle account data.
+# expected_owner: base58 pubkey of the oracle program (strongly recommended).
+#
+# [oracle]
+# price_offset = 73
+# slot_offset = 81
+# max_staleness_slots = 100
+# max_deviation_bps = 500
+# expected_owner = "FsJ3A3u2vn5cTVofAjvy6y5kwABJAqYWpe4975bi2epH"
+
+# ── Circuit Breakers ──
+# [circuit_breakers]
+# enabled = true
+# scope = "global"    # or "per_market"
+#
+# [circuit_breakers.tvl_cliff]
+# track_field = "market.vault_balance"
+# window_slots = 2500
+# window_seconds = 600
+# action = "pause"    # or "reject_current", "close_only", "pause_liquidations"
+# high_water_mark = true
+#
+# [circuit_breakers.tvl_cliff.budgets]
+# withdrawal = { max_decrease_pct = 15 }
+# liquidation = { max_decrease_pct = 25 }
+#
+# [circuit_breakers.tvl_cliff.exempt]
+# instructions = ["deposit", "crank_funding"]
+#
+# [circuit_breakers.categories]
+# withdrawal = ["withdraw", "close_position"]
+# liquidation = ["liquidate"]
+# deposit = ["deposit"]
+
+# ── Recovery ──
+# [recovery.emergency_bypass]
+# enabled = true
+# signers = ["GUARDIAN_1", "GUARDIAN_2"]
+# threshold = 2
+# cooldown_slots = 5000
+# max_duration_slots = 75000
+
+# ── Named Keys ──
+# Referenced by authority checks and recovery config.
+# [keys]
+# ADMIN = "DgUnrBGMYXE4TwcqF4y4pt4cKauTCqF53vL3JG1EevN7"
+# GUARDIAN_1 = "..."
+# GUARDIAN_2 = "..."
+
+# ── Account Declarations ──
+# Used by snapshot field resolution and circuit breaker tracked field reads.
+# [accounts.market]
+# discriminator = [...]
+# [accounts.market.fields]
+# vault_balance = { type = "u64", offset = 200 }

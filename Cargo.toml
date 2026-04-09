@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+    "sandbox-macros",
+    "sandbox-runtime",
+    "sandbox-test-program",
+]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/perk-protocol/perk-sandbox"

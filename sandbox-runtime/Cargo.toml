@@ -1,0 +1,16 @@
+[package]
+name = "perk-sandbox-runtime"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Runtime library for PERK Sandbox — on-chain safety checks for Solana programs"
+
+[dependencies]
+solana-program = "=1.18.26"
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(target_os, values("solana"))'] }
+
+[features]
+default = []
